@@ -4,7 +4,7 @@ runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: opaquefiles
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.openjdk25
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -14,12 +14,12 @@ modules:
   - name: openjdk
     buildsystem: simple
     build-commands:
-      - /usr/lib/sdk/openjdk17/install.sh
+      - /usr/lib/sdk/openjdk25/install.sh
   - name: opaquefiles
     buildsystem: simple
     build-commands:
       - install -D -m0555 opaquefiles /app/bin/opaquefiles
-      - install -D -m0555 OpaqueFiles/packaging/releases/opaquefiles-0.9.10.0.jar /app/share/opaquefiles.jar
+      - install -D -m0555 OpaqueFiles/packaging/releases/opaquefiles-0.9.11.0.jar /app/share/opaquefiles.jar
       - install -D -m0444 OpaqueFiles/documentation/design/page.codeberg.cozyowl.OpaqueFiles.svg /app/share/icons/hicolor/scalable/apps/page.codeberg.cozyowl.OpaqueFiles.svg
       - install -D -m0644 OpaqueFiles/packaging/flatpak/page.codeberg.cozyowl.OpaqueFiles.desktop /app/share/applications/page.codeberg.cozyowl.OpaqueFiles.desktop
       - install -D -m0644 OpaqueFiles/app/src/main/resources/opaqueFiles.properties /etc/opaqueFiles.properties
@@ -32,5 +32,5 @@ modules:
           - exec java -XX:MaxRAMPercentage=75 -jar /app/share/opaquefiles.jar "$@"
       - type: git
         url: https://codeberg.org/cozyOwl/OpaqueFiles.git
-        commit: d06c90acc210dfd515249a962167e981b2e46ff4
+        commit: 968fe01691c3ccf17c016149cd1db6022fe59612
         dest: OpaqueFiles
